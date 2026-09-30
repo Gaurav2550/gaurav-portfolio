@@ -207,12 +207,12 @@ export type ExperienceItem = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    role: "Senior Product Designer",
-    company: "Northwind Labs",
-    period: "2023 — Present",
+    role: "Software Engineer ",
+    company: "Anvistar ITS PVT.",
+    period: "2026 — Present",
     location: "Remote",
     summary:
-      "Lead designer for the operations platform serving 14k merchants. Shipped the v2 dashboard and a company-wide design system used by 4 product teams.",
+        "Built and developed full-stack web applications using Java, Spring Boot, React, and PostgreSQL, with a focus on secure APIs, scalable backend architecture, and modern user experiences.",
   },
  
 ];
