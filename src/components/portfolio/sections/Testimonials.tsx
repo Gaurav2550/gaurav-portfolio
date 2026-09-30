@@ -6,17 +6,17 @@ import { SectionHeader } from "./Work";
 
 export function Testimonials() {
   return (
-    <section className="mx-auto mt-24 w-full max-w-[1400px] px-5 md:mt-32 md:px-10">
+    <section className="mx-auto mt-16 w-full max-w-[1400px] px-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:mt-32 lg:px-10">
       <SectionHeader index="04" title="Kind Words" meta="From teams I shipped with" />
 
-      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 xl:gap-6">
         {TESTIMONIALS.map((t, i) => (
           <motion.figure
             key={t.author}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="flex flex-col rounded-2xl border border-line bg-card p-6 md:p-8"
+            className="flex flex-col rounded-2xl border border-line bg-card p-5 sm:p-6 xl:p-8"
           >
             <span className="font-display text-5xl leading-none text-ink/15">“</span>
             <blockquote className="mt-2 flex-1 text-[15px] leading-relaxed text-ink/90 md:text-base">

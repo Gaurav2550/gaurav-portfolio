@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const inter = Inter({
@@ -63,7 +62,6 @@ export default function RootLayout({
           enableSystem
         >
           {children}
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>

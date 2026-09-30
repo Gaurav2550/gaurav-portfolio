@@ -45,45 +45,45 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
+  --background: #ffffff;
+  --foreground: #0b162a;
+  --card: #fbfdff;
+  --card-foreground: #0b162a;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0f172a;
-  --primary-foreground: #f8fafc;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #e0f2fe;
-  --accent-foreground: #0f172a;
+  --popover-foreground: #0b162a;
+  --primary: #0b162a;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f7fb;
+  --secondary-foreground: #0b162a;
+  --muted: #f5f8fc;
+  --muted-foreground: #52657a;
+  --accent: #eaf5ff;
+  --accent-foreground: #0b162a;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0f172a;
+  --border: #dbe6f0;
+  --input: #dbe6f0;
+  --ring: #0b162a;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #0f172a;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #0f172a;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0b162a;
+  --sidebar-primary: #0b162a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f7fb;
+  --sidebar-accent-foreground: #0b162a;
+  --sidebar-border: #dbe6f0;
+  --sidebar-ring: #0b162a;
 
   /* Portfolio-specific tokens - Cool White Theme */
   --accent-green: #10b981;
   --accent-green-soft: #d1fae5;
-  --ink: #0f172a;
-  --paper: #f8fafc;
-  --line: #e2e8f0;
-  --ash: #64748b;
+  --ink: #0b162a;
+  --paper: #ffffff;
+  --line: #dbe6f0;
+  --ash: #52657a;
 
   /* Optimize rendering performance */
   color-scheme: light;
@@ -126,8 +126,13 @@
   body {
     position: relative;
   }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
   body {
     @apply bg-background text-foreground;
+    overflow-x: clip;
     font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
     font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
@@ -139,9 +144,16 @@
   }
 
   /* Hide default cursor on desktop when custom cursor is active */
-  @media (pointer: fine) and (min-width: 768px) {
+  @media (pointer: fine) and (min-width: 1024px) {
     * {
       cursor: none !important;
+    }
+  }
+
+  /* Ensure default cursor on mobile and tablet */
+  @media (pointer: coarse), (max-width: 1023px) {
+    * {
+      cursor: auto !important;
     }
   }
 

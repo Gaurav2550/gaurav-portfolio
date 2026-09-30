@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 
 /**
  * Optimized custom cursor with smooth animations
+ * Only visible on desktop devices with fine pointer (mouse)
  * Performance-focused with reduced re-renders
  */
 export function Cursor() {
@@ -17,8 +18,8 @@ export function Cursor() {
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const sx = useSpring(x, { stiffness: 400, damping: 35, mass: 0.3 });
-  const sy = useSpring(y, { stiffness: 400, damping: 35, mass: 0.3 });
+  const sx = useSpring(x, { stiffness: 450, damping: 38, mass: 0.25 });
+  const sy = useSpring(y, { stiffness: 450, damping: 38, mass: 0.25 });
 
   // Theme-aware colors (memoized)
   const isDark = theme === "dark";
@@ -46,9 +47,12 @@ export function Cursor() {
   const up = useCallback(() => setClicking(false), []);
 
   useEffect(() => {
-    const mq = window.matchMedia("(pointer: fine)");
+    // Only enable on desktop devices with fine pointer (mouse)
+    const mq = window.matchMedia("(pointer: fine) and (min-width: 1024px)");
     const update = () => setEnabled(mq.matches);
     update();
+
+    if (!mq.matches) return;
 
     window.addEventListener("mousemove", move, { passive: true });
     window.addEventListener("mouseover", over, { passive: true });
@@ -70,7 +74,7 @@ export function Cursor() {
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[100] hidden md:block"
+      className="pointer-events-none fixed left-0 top-0 z-[100] hidden lg:block"
       style={{ x: sx, y: sy }}
     >
       {/* Outer ring */}
@@ -81,11 +85,11 @@ export function Cursor() {
           y: "-50%",
         }}
         animate={{
-          width: hovering ? 100 : clicking ? 20 : 32,
-          height: hovering ? 100 : clicking ? 20 : 32,
-          opacity: hovering ? 0.9 : 0.6,
+          width: hovering ? 96 : clicking ? 18 : 30,
+          height: hovering ? 96 : clicking ? 18 : 30,
+          opacity: hovering ? 0.9 : 0.5,
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.5 }}
+        transition={{ type: "spring", stiffness: 320, damping: 28, mass: 0.4 }}
       />
 
       {/* Inner dot */}
@@ -96,27 +100,27 @@ export function Cursor() {
           y: "-50%",
         }}
         animate={{
-          width: hovering ? 88 : clicking ? 12 : 8,
-          height: hovering ? 88 : clicking ? 12 : 8,
-          scale: clicking ? 0.8 : 1,
+          width: hovering ? 84 : clicking ? 10 : 7,
+          height: hovering ? 84 : clicking ? 10 : 7,
+          scale: clicking ? 0.75 : 1,
         }}
-        transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.5 }}
+        transition={{ type: "spring", stiffness: 320, damping: 28, mass: 0.4 }}
       >
         <AnimatePresence mode="wait">
           {label && (
             <motion.div
               key={label}
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.75 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.12 }}
+              exit={{ opacity: 0, scale: 0.75 }}
+              transition={{ duration: 0.1 }}
               className="absolute inset-0 flex items-center justify-center p-2"
             >
               <span 
                 className="font-semibold uppercase tracking-tight text-center leading-tight"
                 style={{
-                  fontSize: '10px',
-                  maxWidth: '72px',
+                  fontSize: '9px',
+                  maxWidth: '68px',
                   wordBreak: 'break-word',
                 }}
               >
@@ -134,11 +138,11 @@ export function Cursor() {
           style={{
             x: "-50%",
             y: "-50%",
-            opacity: 0.3,
+            opacity: 0.25,
           }}
-          initial={{ width: 88, height: 88 }}
-          animate={{ width: 110, height: 110, opacity: 0 }}
-          transition={{ duration: 0.8, repeat: Infinity, ease: "easeOut" }}
+          initial={{ width: 84, height: 84 }}
+          animate={{ width: 106, height: 106, opacity: 0 }}
+          transition={{ duration: 0.75, repeat: Infinity, ease: "easeOut" }}
         />
       )}
     </motion.div>

@@ -1,21 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, Calendar, Sparkles } from "lucide-react";
+import { ArrowUpRight, Mail, Calendar } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/portfolio/data";
 
 export function Contact() {
   return (
     <section
       id="contact"
-      className="mx-auto mt-24 w-full max-w-[1400px] px-5 md:mt-32 md:px-10"
+      className="mx-auto mt-16 w-full max-w-[1400px] px-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:mt-32 lg:px-10"
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-ink via-ink to-ink/95 px-6 py-16 text-paper md:px-16 md:py-24"
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ink via-ink to-ink/95 px-5 py-14 text-paper sm:rounded-3xl sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-16 lg:py-24"
       >
         {/* Animated gradient orbs */}
         <div className="absolute inset-0 overflow-hidden">
@@ -93,7 +93,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="mt-6 max-w-3xl font-display text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl"
+            className="mt-6 max-w-3xl font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
           >
             Have Software that needs{" "}
             <span className="inline-block bg-gradient-to-t  from-black to-white/95 bg-clip-text text-transparent">
@@ -108,7 +108,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-6 max-w-xl text-lg text-paper/70 leading-relaxed"
+            className="mt-6 max-w-xl text-base leading-relaxed text-paper/70 sm:text-lg"
           >
             I take on a small number of new projects each quarter. Tell me about
             yours — I usually reply within a day.
@@ -125,11 +125,11 @@ export function Contact() {
             <motion.a
               href="mailto:thombareg216@gmail.com"
               data-cursor="Email"
-              className="group relative overflow-hidden rounded-full bg-paper px-8 py-4 text-sm font-semibold text-ink transition-all hover:shadow-2xl hover:shadow-paper/20"
+              className="group relative flex w-full overflow-hidden rounded-full bg-paper px-5 py-4 text-xs font-semibold text-ink transition-all hover:shadow-2xl hover:shadow-paper/20 sm:w-auto sm:px-8 sm:text-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2.5">
+              <span className="relative z-10 flex min-w-0 items-center justify-center gap-2 break-all sm:gap-2.5">
                 <Mail className="h-4 w-4" />
                 thombareg216@gmail.com
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -142,7 +142,7 @@ export function Contact() {
 
             <motion.a
               href="#top"
-              className="group inline-flex items-center justify-center gap-2.5 rounded-full border-2 border-paper/30 bg-paper/5 px-8 py-4 text-sm font-semibold text-paper backdrop-blur-sm transition-all hover:border-paper/50 hover:bg-paper/10"
+              className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full border-2 border-paper/30 bg-paper/5 px-5 py-4 text-sm font-semibold text-paper backdrop-blur-sm transition-all hover:border-paper/50 hover:bg-paper/10 sm:w-auto sm:px-8"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -158,11 +158,11 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-16 space-y-4"
+            className="mt-12 space-y-4 sm:mt-16"
           >
             <div className="h-px w-full bg-gradient-to-r from-transparent via-paper/20 to-transparent" />
             
-            <div className="flex flex-wrap gap-6 pt-4">
+            <div className="flex flex-col gap-3 pt-4 min-[420px]:flex-row min-[420px]:flex-wrap min-[420px]:gap-5 sm:gap-6">
               {SOCIAL_LINKS.map((s, index) => (
                 <motion.a
                   key={s.label}

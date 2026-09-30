@@ -6,16 +6,16 @@ import { PROJECTS, type Project } from "@/lib/portfolio/data";
 
 export function Work() {
   return (
-    <section id="work" className="mx-auto mt-24 w-full max-w-[1400px] px-5 md:mt-32 md:px-10">
+    <section id="work" className="mx-auto mt-16 w-full max-w-[1400px] px-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:mt-32 lg:px-10">
       <SectionHeader index="01" title="Selected Work" meta="4+ projects Build" />
 
-      <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-6 md:gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-6 lg:gap-6">
         {PROJECTS.map((p, i) => (
           <ProjectCard key={p.id} project={p} index={i} />
         ))}
       </div>
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-8 flex justify-center sm:mt-12">
         <a
           href="#contact"
           data-cursor="More"
@@ -32,10 +32,10 @@ export function Work() {
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const spanClass =
     project.span === "wide"
-      ? "md:col-span-4"
+      ? "sm:col-span-2 lg:col-span-4"
       : project.span === "tall"
-      ? "md:col-span-2 md:row-span-2"
-      : "md:col-span-2";
+      ? "sm:col-span-2 lg:col-span-2 lg:row-span-2"
+      : "lg:col-span-2";
 
   return (
     <motion.article
@@ -75,9 +75,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
 
       {/* Body */}
-      <div className="flex flex-1 flex-col p-5 md:p-6">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
+          <h3 className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
             {project.title}
           </h3>
           <span className="mt-1 flex h-8 w-8 flex-none items-center justify-center rounded-full border border-line text-ash transition-all group-hover:bg-ink group-hover:text-paper">
@@ -119,11 +119,11 @@ export function SectionHeader({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="flex items-end justify-between border-b border-line pb-5"
+      className="flex items-end justify-between gap-4 border-b border-line pb-4 sm:pb-5"
     >
       <div className="flex items-center gap-3">
         <span className="font-mono text-xs text-ash">[{index}]</span>
-        <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
+        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           {title}
         </h2>
       </div>

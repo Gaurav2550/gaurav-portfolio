@@ -6,7 +6,7 @@ export type NavItem = {
   href: string;
 };
 
-export const NAV_ITEMS: NavItem[] =[
+export const NAV_ITEMS: NavItem[] = [
   { label: "Projects", meta: "04", href: "#work" },
   { label: "Expertise", meta: "04", href: "#services" },
   { label: "Experience", meta: "01+", href: "#experience" },
@@ -46,9 +46,10 @@ export type Project = {
   tags: string[];
   accent: string; // tailwind bg class for the thumbnail
   span?: "wide" | "tall" | "default";
+  thumbnail:string
 };
 
-export const PROJECTS: Project[] =  [
+export const PROJECTS: Project[] =   [
   {
     id: "p1",
     title: "Crime Report System",
@@ -65,6 +66,7 @@ export const PROJECTS: Project[] =  [
       "Spring AI",
     ],
 
+    thumbnail: "images/Crime report online.png",
     accent: "bg-slate-100",
     span: "wide",
   },
@@ -85,6 +87,7 @@ export const PROJECTS: Project[] =  [
       "REST API",
     ],
 
+    thumbnail: "/images/movie.png",
     accent: "bg-blue-100",
   },
 
@@ -104,6 +107,7 @@ export const PROJECTS: Project[] =  [
       "Streaming",
     ],
 
+    thumbnail: "/images/Stream.png",
     accent: "bg-emerald-100",
   },
 
@@ -123,6 +127,7 @@ export const PROJECTS: Project[] =  [
       "System Design",
     ],
 
+    thumbnail: "images/Api Health.png",
     accent: "bg-violet-100",
   },
 ];
@@ -209,6 +214,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     summary:
       "Lead designer for the operations platform serving 14k merchants. Shipped the v2 dashboard and a company-wide design system used by 4 product teams.",
   },
+ 
 ];
 
 export type Testimonial = {

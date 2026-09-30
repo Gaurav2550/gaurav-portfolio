@@ -28,12 +28,13 @@ export function Header() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 md:h-20 w-full max-w-[1400px] items-center justify-between px-5 md:px-10">
+      <div className="mx-auto flex h-14 w-full max-w-[1400px] items-center justify-between gap-2 px-4 sm:h-16 sm:px-6 md:px-8 lg:h-20 lg:px-10">
         {/* Left — availability badge */}
         <motion.a
           href="#top"
           data-cursor="Home"
-          className="group relative overflow-hidden rounded-full border border-line bg-gradient-to-r from-background/95 to-background/80 px-4 py-2 backdrop-blur-sm transition-all duration-300 hover:border-ink/40 hover:shadow-xl hover:shadow-ink/10 hover:scale-105"
+          aria-label="Back to top"
+          className="group relative shrink-0 overflow-hidden rounded-full border border-line bg-gradient-to-r from-background/95 to-background/80 px-3 py-2 backdrop-blur-sm transition-all duration-300 hover:border-ink/40 hover:shadow-xl hover:shadow-ink/10 hover:scale-105 sm:px-4"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -86,12 +87,12 @@ export function Header() {
                 d="M5 13l4 4L19 7"
               />
             </motion.svg>
-            <span className="inline-block">Available for New Project</span>
+            <span className="hidden min-[390px]:inline-block">Available for New Project</span>
           </span>
         </motion.a>
 
         {/* Center — nav (desktop) */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
@@ -117,7 +118,7 @@ export function Header() {
           <a
             href="#contact"
             data-cursor="Say hi"
-            className="group hidden items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-paper transition-all hover:gap-3 sm:flex"
+            className="group hidden items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-medium text-paper transition-all hover:gap-3 lg:flex"
           >
             Let&apos;s Talk
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -125,7 +126,8 @@ export function Header() {
           <button
             onClick={() => setOpen(true)}
             aria-label="Open menu"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line md:hidden"
+            aria-expanded={open}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line lg:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -139,9 +141,9 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background md:hidden"
+            className="fixed inset-0 z-50 overflow-y-auto bg-background lg:hidden"
           >
-            <div className="flex h-16 items-center justify-between px-5">
+            <div className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-6">
               <span className="font-display text-lg font-bold">Menu</span>
               <div className="flex items-center gap-2">
                 <ThemeToggle />
@@ -154,7 +156,7 @@ export function Header() {
                 </button>
               </div>
             </div>
-            <nav className="mt-6 flex flex-col gap-1 px-5">
+            <nav className="mx-auto mt-6 flex w-full max-w-lg flex-col gap-1 px-4 pb-8 sm:px-6">
               {NAV_ITEMS.map((item, i) => (
                 <motion.a
                   key={item.label}
@@ -165,7 +167,7 @@ export function Header() {
                   transition={{ delay: 0.05 * i }}
                   className="flex items-baseline justify-between border-b border-line py-4"
                 >
-                  <span className="font-display text-3xl font-semibold">
+                  <span className="font-display text-2xl font-semibold sm:text-3xl">
                     {item.label}
                   </span>
                   {item.meta ? (

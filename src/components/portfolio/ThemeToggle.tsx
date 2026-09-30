@@ -1,19 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useSimpleThemeTransition } from "@/hooks/useSimpleThemeTransition";
 
+const subscribeToMount = () => () => {};
+
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribeToMount, () => true, () => false);
   const { theme } = useTheme();
   const { toggleTheme } = useSimpleThemeTransition();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return (

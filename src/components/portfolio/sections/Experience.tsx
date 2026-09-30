@@ -8,7 +8,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="mx-auto mt-24 w-full max-w-[1400px] px-5 md:mt-32 md:px-10"
+      className="mx-auto mt-16 w-full max-w-[1400px] px-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:mt-32 lg:px-10"
     >
       <SectionHeader index="03" title="Experience" meta="1+ years working" />
 
@@ -19,7 +19,7 @@ export function Experience() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="group grid grid-cols-1 gap-2 py-6 md:grid-cols-12 md:gap-6 md:py-8"
+            className="group grid grid-cols-1 gap-2 py-6 sm:gap-3 md:grid-cols-12 md:gap-6 md:py-8"
             data-cursor="View"
           >
             <div className="md:col-span-3">

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, Sparkles, Code2, Zap } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/portfolio/data";
 
 gsap.registerPlugin(useGSAP);
@@ -100,7 +100,7 @@ export function Hero() {
     <section
       ref={root}
       id="top"
-      className="relative mx-auto w-full max-w-[1400px] overflow-hidden px-5 pt-28 md:px-10 md:pt-36"
+      className="relative mx-auto w-full max-w-[1400px] overflow-hidden px-4 pt-24 sm:px-6 sm:pt-28 md:px-8 md:pt-32 lg:px-10 lg:pt-36"
     >
       {/* Decorative grid pattern background */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
@@ -182,7 +182,7 @@ export function Hero() {
           <h1
             data-hero="line-1"
             aria-label="Gaurav "
-            className="pointer-events-none relative z-10 select-none font-display text-[22vw] font-bold leading-[2.15] tracking-tight md:text-[16vw] lg:text-[15vw]"
+            className="pointer-events-none relative z-10 select-none font-display text-[21vw] font-bold leading-[1.8] tracking-tight sm:text-[19vw] sm:leading-[1.95] md:text-[16vw] md:leading-[2.15] lg:text-[15vw]"
           >
             <span className="block overflow-hidden">
               {line1.map((c, i) => (
@@ -198,7 +198,7 @@ export function Hero() {
         </div>
 
         {/* Portrait + second line row */}
-        <div className="relative z-10 -mt-[8vw] flex flex-col items-center justify-center md:-mt-[10vw]">
+        <div className="relative z-10 -mt-[6vw] flex flex-col items-center justify-center sm:-mt-[8vw] md:-mt-[10vw]">
           {/* Decorative ring around portrait */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -212,7 +212,7 @@ export function Hero() {
               opacity: { delay: 1.3, duration: 0.8 },
               rotate: { duration: 40, repeat: Infinity, ease: "linear" }
             }}
-            className="pointer-events-none absolute z-0 h-[46vw] w-[62vw] rounded-[32px] border border-dashed border-ink/10 dark:border-paper/10 md:h-[40vw] md:w-[36vw] lg:h-[36vw] lg:w-[32vw]"
+            className="pointer-events-none absolute z-0 h-[54vw] w-[76vw] rounded-[28px] border border-dashed border-ink/10 dark:border-paper/10 sm:h-[46vw] sm:w-[62vw] md:h-[40vw] md:w-[36vw] lg:h-[36vw] lg:w-[32vw]"
           />
           
           <div
@@ -225,7 +225,7 @@ export function Hero() {
             {/* Subtle glow effect behind portrait */}
             <div className="absolute inset-0 -z-10 translate-y-4 scale-95 rounded-[28px] bg-ink/5 blur-2xl dark:bg-paper/5" />
             
-            <div className="relative h-[44vw] w-[60vw] overflow-hidden rounded-[28px] bg-muted shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] md:h-[38vw] md:w-[34vw] lg:h-[34vw] lg:w-[30vw]">
+            <div className="relative h-[50vw] w-[72vw] overflow-hidden rounded-[24px] bg-muted shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] sm:h-[44vw] sm:w-[60vw] sm:rounded-[28px] md:h-[38vw] md:w-[34vw] lg:h-[34vw] lg:w-[30vw]">
               <img
                 src="/images/Gaurav Thombare.png"
                 alt="portrait of Gaurav Thomabare software engineer"
@@ -253,7 +253,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.6, duration: 0.6 }}
-              className="absolute -right-3 top-6 hidden rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm md:block"
+              className="absolute -right-3 top-6 hidden rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm lg:block"
             >
               Based in Pune · IST
             </motion.div>
@@ -261,7 +261,7 @@ export function Hero() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.7, duration: 0.6 }}
-              className="absolute -left-4 bottom-8 hidden -rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm md:block"
+              className="absolute -left-4 bottom-8 hidden -rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm lg:block"
             >
               Open to remote · Worldwide
             </motion.div>
@@ -272,7 +272,7 @@ export function Hero() {
             <h2
               data-hero="line-2"
               aria-hidden
-              className="pointer-events-none -mt-[6vw] select-none font-sans text-[22vw] font-bold leading-[2.12] tracking-tight md:-mt-[4vw] md:text-[16vw] lg:text-[15vw]"
+              className="pointer-events-none -mt-[5vw] select-none font-sans text-[20vw] font-bold leading-[1.9] tracking-tight sm:text-[18vw] sm:leading-[2] md:-mt-[4vw] md:text-[16vw] md:leading-[2.12] lg:text-[15vw]"
             >
               <span className="block overflow-hidden text-center">
                 {line2.map((c, i) => (
@@ -297,8 +297,8 @@ export function Hero() {
         </div>
 
         {/* Lower row: title + desc + CTA (left), socials (right) */}
-        <div className="mt-10 flex flex-col gap-10 md:mt-12 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-md">
+        <div className="mt-8 flex flex-col gap-8 sm:mt-10 md:mt-12 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-md lg:pr-8">
             <p
               data-hero="title"
               className="font-display text-2xl font-semibold tracking-tight md:text-3xl"
@@ -324,7 +324,7 @@ export function Hero() {
           </div>
 
           {/* Social links — vertical on desktop, horizontal scroll on mobile */}
-          <div className="flex gap-3 md:flex-col md:gap-2.5">
+          <div className="grid w-full grid-cols-1 gap-2 min-[440px]:grid-cols-3 lg:w-auto lg:grid-cols-1 lg:gap-2.5">
             {SOCIAL_LINKS.map((s) => (
               <motion.a
                 key={s.label}
@@ -334,7 +334,7 @@ export function Hero() {
                 data-cursor="Follow"
                 data-hero="social"
                 whileHover={{ x: 4 }}
-                className="group flex items-center gap-3 rounded-full border border-line bg-background px-4 py-2.5 text-sm font-medium text-ink"
+                className="group flex min-w-0 items-center justify-between gap-3 rounded-full border border-line bg-background px-4 py-2.5 text-sm font-medium text-ink lg:justify-start"
               >
                 <SocialIcon name={s.label} />
                 <span>{s.label}</span>
