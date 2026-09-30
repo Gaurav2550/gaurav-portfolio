@@ -10,18 +10,17 @@ export function Footer() {
       <div className="flex flex-col items-start justify-between gap-6 border-t border-line pt-8 md:flex-row md:items-center">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-ink font-display text-sm font-bold text-paper">
-            DA
+            GT
           </div>
           <div>
-            <div className="text-sm font-semibold text-ink">Dymas Alfin</div>
-            <div className="text-xs text-ash">UI/UX Designer · Jakarta, ID</div>
+            <div className="text-sm font-semibold text-ink">Gaurav Thombare</div>
+            <div className="text-xs text-ash">Software Engineer · Pune, MH</div>
           </div>
         </div>
 
         <div className="flex items-center gap-6 text-xs text-ash">
           <span>© {year} — All rights reserved</span>
           <span className="hidden md:inline">·</span>
-          <span className="hidden md:inline">Built with Next.js, GSAP & Framer Motion</span>
         </div>
 
         <a

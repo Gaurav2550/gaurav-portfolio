@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,21 +17,32 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Dymas Alfin — UI/UX Designer",
+  title: "Gaurav Thombare — Software Engineer",
   description:
-    "Designing digital products that are clear, usable, and conversion focused. Portfolio of Dymas Alfin, UI/UX Designer with 9+ years of experience.",
+    "Software Engineer specializing in Java, Spring Boot, REST APIs, system design, databases, and scalable backend applications.",
   keywords: [
-    "UI/UX Designer",
-    "Portfolio",
-    "Product Design",
-    "Dymas Alfin",
-    "Web Design",
+    "Gaurav Thombare",
+    "Software Engineer",
+    "Java Developer",
+    "Java Backend Developer",
+    "Spring Boot Developer",
+    "Backend Developer",
+    "Full Stack Developer",
+    "REST API",
+    "System Design",
+    "Spring Security",
+    "PostgreSQL",
+    "MySQL",
   ],
-  authors: [{ name: "Dymas Alfin" }],
+  authors: [
+    {
+      name: "Gaurav Thombare",
+    },
+  ],
   openGraph: {
-    title: "Dymas Alfin — UI/UX Designer",
+    title: "Gaurav Thombare — Software Engineer",
     description:
-      "Designing digital products that are clear, usable, and conversion focused.",
+      "Software Engineer specializing in Java, Spring Boot, REST APIs, system design, databases, and scalable backend applications.",
     type: "website",
   },
 };
@@ -45,8 +57,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground`}
       >
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

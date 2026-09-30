@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles, Code2, Zap } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/portfolio/data";
 
 gsap.registerPlugin(useGSAP);
@@ -12,63 +12,77 @@ gsap.registerPlugin(useGSAP);
 export function Hero() {
   const root = useRef<HTMLDivElement>(null);
   const portraitWrap = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: root,
+    offset: ["start start", "end start"],
+  });
+  
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   useGSAP(
     () => {
-      // Staggered reveal of hero text lines + portrait
+      // Enhanced staggered reveal with more dynamic animations
       const tl = gsap.timeline({
         defaults: { ease: "power3.out", duration: 0.9 },
       });
 
       tl.from("[data-hero='line-1'] .char", {
-        yPercent: 110,
-        rotate: 4,
-        stagger: 0.04,
-        duration: 1,
+        yPercent: 120,
+        rotate: 8,
+        opacity: 0,
+        stagger: 0.035,
+        duration: 1.1,
+        ease: "back.out(1.2)",
       })
         .from(
           "[data-hero='line-2'] .char",
-          { yPercent: 110, rotate: -3, stagger: 0.04, duration: 1 },
-          "-=0.85"
+          { yPercent: 120, rotate: -8, opacity: 0, stagger: 0.035, duration: 1.1, ease: "back.out(1.2)" },
+          "-=0.9"
         )
         .from(
           "[data-hero='portrait']",
-          { yPercent: 8, opacity: 0, duration: 1.1, ease: "expo.out" },
-          "-=1.1"
+          { scale: 0.8, yPercent: 10, opacity: 0, duration: 1.2, ease: "expo.out" },
+          "-=1.2"
+        )
+        .from(
+          "[data-hero='badge']",
+          { scale: 0, rotate: -180, opacity: 0, duration: 0.6, stagger: 0.1, ease: "back.out(2)" },
+          "-=0.4"
         )
         .from(
           "[data-hero='title']",
-          { y: 24, opacity: 0, duration: 0.7 },
+          { y: 30, opacity: 0, duration: 0.8 },
           "-=0.6"
         )
         .from(
           "[data-hero='desc']",
-          { y: 20, opacity: 0, duration: 0.7 },
+          { y: 25, opacity: 0, duration: 0.8 },
           "-=0.5"
         )
         .from(
           "[data-hero='cta']",
-          { y: 20, opacity: 0, duration: 0.6 },
+          { scale: 0.9, y: 20, opacity: 0, duration: 0.7, ease: "back.out(1.5)" },
           "-=0.5"
         )
         .from(
           "[data-hero='social']",
-          { x: 30, opacity: 0, duration: 0.6, stagger: 0.08 },
-          "-=0.6"
+          { x: -40, opacity: 0, duration: 0.7, stagger: 0.1, ease: "back.out(1.5)" },
+          "-=0.7"
         );
 
-      // Subtle parallax on portrait following the cursor
+      // Enhanced 3D parallax effect on portrait
       const onMove = (e: MouseEvent) => {
         const rect = root.current?.getBoundingClientRect();
         if (!rect) return;
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         gsap.to(portraitWrap.current, {
-          x: x * 24,
-          y: y * 18,
-          rotateY: x * 6,
-          rotateX: -y * 6,
-          duration: 0.8,
+          x: x * 30,
+          y: y * 22,
+          rotateY: x * 8,
+          rotateX: -y * 8,
+          duration: 0.9,
           ease: "power2.out",
         });
       };
@@ -79,36 +93,128 @@ export function Hero() {
     { scope: root }
   );
 
-  const line1 = "DYMAS".split("");
-  const line2 = "ALFIN".split("");
+  const line1 = "Gaurav".split("");
+  const line2 = "Thombare".split("");
 
   return (
     <section
       ref={root}
       id="top"
-      className="relative mx-auto w-full max-w-[1400px] px-5 pt-28 md:px-10 md:pt-36"
+      className="relative mx-auto w-full max-w-[1400px] overflow-hidden px-5 pt-28 md:px-10 md:pt-36"
     >
+      {/* Decorative grid pattern background */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.02] dark:opacity-[0.03]">
+        <div 
+          className="h-full w-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, currentColor 1px, transparent 1px),
+              linear-gradient(to bottom, currentColor 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
+      </div>
+
+      {/* Floating decorative shapes */}
+      <motion.div
+        className="pointer-events-none absolute left-[10%] top-[15%] h-2 w-2 rounded-full bg-ink/10 dark:bg-paper/10"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="pointer-events-none absolute right-[15%] top-[25%] h-3 w-3 rounded-full bg-ink/10 dark:bg-paper/10"
+        animate={{
+          y: [0, 25, 0],
+          opacity: [0.2, 0.5, 0.2],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
+      <motion.div
+        className="pointer-events-none absolute left-[5%] bottom-[20%] h-1.5 w-1.5 rounded-full bg-ink/10 dark:bg-paper/10"
+        animate={{
+          y: [0, -15, 0],
+          opacity: [0.3, 0.7, 0.3],
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5,
+        }}
+      />
+
+      {/* Decorative corner accents */}
+      <div className="pointer-events-none absolute left-0 top-0 h-32 w-32 opacity-[0.03] dark:opacity-[0.05]">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0 L100 0 L0 100 Z" fill="currentColor" />
+        </svg>
+      </div>
+      <div className="pointer-events-none absolute right-0 bottom-0 h-32 w-32 rotate-180 opacity-[0.03] dark:opacity-[0.05]">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0 L100 0 L0 100 Z" fill="currentColor" />
+        </svg>
+      </div>
+
       <div className="relative">
         {/* Giant outlined name — line 1 */}
-        <h1
-          data-hero="line-1"
-          aria-label="Dymas Alfin"
-          className="pointer-events-none select-none font-display text-[22vw] font-bold leading-[0.82] tracking-tight md:text-[16vw] lg:text-[15vw]"
-        >
-          <span className="block overflow-hidden">
-            {line1.map((c, i) => (
-              <span
-                key={i}
-                className="char inline-block text-stroke will-change-transform"
-              >
-                {c}
-              </span>
-            ))}
-          </span>
-        </h1>
+        <div className="relative">
+          {/* Decorative line accent */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
+            className="absolute -left-5 top-[15%] h-[2px] w-16 origin-left bg-ink/20 dark:bg-paper/20 md:-left-10 md:w-24"
+          />
+          
+          <h1
+            data-hero="line-1"
+            aria-label="Gaurav "
+            className="pointer-events-none relative z-10 select-none font-display text-[22vw] font-bold leading-[2.15] tracking-tight md:text-[16vw] lg:text-[15vw]"
+          >
+            <span className="block overflow-hidden">
+              {line1.map((c, i) => (
+                <span
+                  key={i}
+                  className="char inline-block text-stroke will-change-transform"
+                >
+                  {c}
+                </span>
+              ))}
+            </span>
+          </h1>
+        </div>
 
         {/* Portrait + second line row */}
         <div className="relative z-10 -mt-[8vw] flex flex-col items-center justify-center md:-mt-[10vw]">
+          {/* Decorative ring around portrait */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ 
+              scale: 1, 
+              opacity: 1,
+              rotate: [0, 360],
+            }}
+            transition={{
+              scale: { delay: 1.3, duration: 0.8 },
+              opacity: { delay: 1.3, duration: 0.8 },
+              rotate: { duration: 40, repeat: Infinity, ease: "linear" }
+            }}
+            className="pointer-events-none absolute z-0 h-[46vw] w-[62vw] rounded-[32px] border border-dashed border-ink/10 dark:border-paper/10 md:h-[40vw] md:w-[36vw] lg:h-[36vw] lg:w-[32vw]"
+          />
+          
           <div
             ref={portraitWrap}
             data-hero="portrait"
@@ -116,13 +222,30 @@ export function Hero() {
             className="relative z-20 will-change-transform"
             style={{ perspective: 1000 }}
           >
+            {/* Subtle glow effect behind portrait */}
+            <div className="absolute inset-0 -z-10 translate-y-4 scale-95 rounded-[28px] bg-ink/5 blur-2xl dark:bg-paper/5" />
+            
             <div className="relative h-[44vw] w-[60vw] overflow-hidden rounded-[28px] bg-muted shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] md:h-[38vw] md:w-[34vw] lg:h-[34vw] lg:w-[30vw]">
               <img
-                src="/portrait/portrait.png"
-                alt="Portrait of Dymas Alfin, UI/UX Designer"
-                className="h-full w-full object-cover grayscale-portrait"
+                src="/images/Gaurav Thombare.png"
+                alt="portrait of Gaurav Thomabare software engineer"
+                className="h-full w-full object-cover object-[center_20%] grayscale-portrait dark:grayscale-0 dark:filter-none"
               />
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-black/5" />
+              
+              {/* Scan line effect */}
+              <motion.div
+                className="pointer-events-none absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-ink/20 to-transparent dark:via-paper/20"
+                animate={{
+                  top: ['0%', '100%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatDelay: 2,
+                }}
+              />
             </div>
 
             {/* Floating label badge */}
@@ -132,7 +255,7 @@ export function Hero() {
               transition={{ delay: 1.6, duration: 0.6 }}
               className="absolute -right-3 top-6 hidden rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm md:block"
             >
-              Based in Jakarta · GMT+7
+              Based in Pune · IST
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -145,22 +268,32 @@ export function Hero() {
           </div>
 
           {/* Giant solid name — line 2 */}
-          <h2
-            data-hero="line-2"
-            aria-hidden
-            className="pointer-events-none -mt-[6vw] select-none font-display text-[22vw] font-bold leading-[0.82] tracking-tight md:-mt-[8vw] md:text-[16vw] lg:text-[15vw]"
-          >
-            <span className="block overflow-hidden text-center">
-              {line2.map((c, i) => (
-                <span
-                  key={i}
-                  className="char inline-block text-ink will-change-transform"
-                >
-                  {c}
-                </span>
-              ))}
-            </span>
-          </h2>
+          <div className="relative">
+            <h2
+              data-hero="line-2"
+              aria-hidden
+              className="pointer-events-none -mt-[6vw] select-none font-sans text-[22vw] font-bold leading-[2.12] tracking-tight md:-mt-[4vw] md:text-[16vw] lg:text-[15vw]"
+            >
+              <span className="block overflow-hidden text-center">
+                {line2.map((c, i) => (
+                  <span
+                    key={i}
+                    className="char inline-block text-ink will-change-transform"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </span>
+            </h2>
+            
+            {/* Decorative line accent */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
+              className="absolute -right-5 bottom-[25%] h-[2px] w-16 origin-right bg-ink/20 dark:bg-paper/20 md:-right-10 md:w-24"
+            />
+          </div>
         </div>
 
         {/* Lower row: title + desc + CTA (left), socials (right) */}
@@ -170,15 +303,13 @@ export function Hero() {
               data-hero="title"
               className="font-display text-2xl font-semibold tracking-tight md:text-3xl"
             >
-              UI/UX Designer
+              Software Engineer
             </p>
             <p
               data-hero="desc"
               className="mt-3 max-w-sm text-[15px] leading-relaxed text-ash md:text-base"
             >
-              Designing digital products that are clear, usable, and conversion
-              focused. I help teams ship interfaces people actually want to
-              use.
+              Passionate about building scalable, secure, and high-performance software solutions. I combine clean code with modern architecture to deliver seamless user experiences.
             </p>
             <motion.a
               data-hero="cta"
@@ -219,26 +350,44 @@ export function Hero() {
 
 function SocialIcon({ name }: { name: string }) {
   const cls = "h-4 w-4";
-  switch (name) {
-    case "Dribbble":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} fill="currentColor" aria-hidden>
-          <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.6 4.62a8.46 8.46 0 0 1 1.92 5.3c-.28-.06-3.08-.63-5.9-.27-.06-.15-.12-.3-.19-.45-.18-.42-.38-.84-.59-1.24 3.12-1.27 4.54-3.1 4.76-3.34ZM12 3.5c2.18 0 4.17.82 5.68 2.16-.18.26-1.45 1.97-4.46 3.1A39.7 39.7 0 0 0 9.4 4.05 8.5 8.5 0 0 1 12 3.5ZM7.78 4.65a46.7 46.7 0 0 1 3.8 4.62c-4.84 1.29-9.1 1.26-9.56 1.26A8.53 8.53 0 0 1 7.78 4.65ZM3.51 12v-.26c.45.01 5.41.07 10.57-1.46.3.58.58 1.17.84 1.76l-.4.12c-5.3 1.71-8.13 6.4-8.37 6.79A8.46 8.46 0 0 1 3.51 12Zm8.49 8.5a8.43 8.43 0 0 1-5.22-1.79c.18-.37 2.24-4.34 8.04-6.36l.07-.02c1.45 3.77 2.05 6.93 2.2 7.83A8.45 8.45 0 0 1 12 20.5Zm3.7-1.5c-.1-.61-.65-3.62-1.99-7.34 2.65-.42 4.97.27 5.26.36a8.5 8.5 0 0 1-3.27 6.98Z" />
-        </svg>
-      );
-    case "Instagram":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} fill="currentColor" aria-hidden>
-          <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.62c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 2.76a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6Zm0 1.62a3.68 3.68 0 1 0 0 7.36 3.68 3.68 0 0 0 0-7.36Zm5.5-2.9a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z" />
-        </svg>
-      );
-    case "LinkedIn":
-      return (
-        <svg viewBox="0 0 24 24" className={cls} fill="currentColor" aria-hidden>
-          <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.74v20.51C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.74C24 .78 23.2 0 22.22 0Z" />
-        </svg>
-      );
-    default:
-      return null;
-  }
+ switch (name) {
+  case "GitHub":
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className={cls}
+        fill="currentColor"
+        aria-hidden
+      >
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 7.35c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12C22 6.48 17.52 2 12 2Z" />
+      </svg>
+    );
+
+  case "Twitter":
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className={cls}
+        fill="currentColor"
+        aria-hidden
+      >
+        <path d="M18.244 2.25h3.308l-7.227 8.26L22.827 21.75h-6.437l-5.04-6.57-5.76 6.57H2.28l7.73-8.835L1.667 2.25H8.27l4.556 6.025 5.418-6.025Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
+      </svg>
+    );
+
+  case "LinkedIn":
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className={cls}
+        fill="currentColor"
+        aria-hidden
+      >
+        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.74v20.51C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.74C24 .78 23.2 0 22.22 0Z" />
+      </svg>
+    );
+
+  default:
+    return null;
+}
 }

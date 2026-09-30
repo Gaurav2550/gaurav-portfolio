@@ -7,7 +7,7 @@ import { PROJECTS, type Project } from "@/lib/portfolio/data";
 export function Work() {
   return (
     <section id="work" className="mx-auto mt-24 w-full max-w-[1400px] px-5 md:mt-32 md:px-10">
-      <SectionHeader index="01" title="Selected Work" meta="40 projects shipped" />
+      <SectionHeader index="01" title="Selected Work" meta="4+ projects Build" />
 
       <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-6 md:gap-6">
         {PROJECTS.map((p, i) => (
@@ -48,16 +48,25 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Thumbnail */}
       <div className={`relative aspect-[16/10] overflow-hidden ${project.accent}`}>
         <div className="absolute inset-0 flex items-center justify-center">
-          {/* Abstract project "preview" — pure CSS, no extra assets */}
-          <div className="relative h-[78%] w-[78%] rounded-xl bg-white shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)] ring-1 ring-black/5 transition-transform duration-700 group-hover:scale-[1.04]">
-            <div className="absolute left-4 top-4 h-2 w-16 rounded-full bg-ink/15" />
-            <div className="absolute left-4 top-8 h-2 w-28 rounded-full bg-ink/10" />
-            <div className="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2">
-              <div className="h-10 rounded-md bg-ink/10" />
-              <div className="h-10 rounded-md bg-ink/10" />
-              <div className="h-10 rounded-md bg-ink/15" />
+          {project.thumbnail ? (
+            // Display actual project thumbnail
+            <img
+              src={project.thumbnail}
+              alt={`${project.title} thumbnail`}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          ) : (
+            // Fallback: Abstract project "preview" — pure CSS, no extra assets
+            <div className="relative h-[78%] w-[78%] rounded-xl bg-white shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)] ring-1 ring-black/5 transition-transform duration-700 group-hover:scale-[1.04]">
+              <div className="absolute left-4 top-4 h-2 w-16 rounded-full bg-ink/15" />
+              <div className="absolute left-4 top-8 h-2 w-28 rounded-full bg-ink/10" />
+              <div className="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2">
+                <div className="h-10 rounded-md bg-ink/10" />
+                <div className="h-10 rounded-md bg-ink/10" />
+                <div className="h-10 rounded-md bg-ink/15" />
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="absolute right-4 top-4 z-10 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-ink backdrop-blur">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/portfolio/data";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,19 +30,65 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 md:h-20 w-full max-w-[1400px] items-center justify-between px-5 md:px-10">
         {/* Left — availability badge */}
-        <a
+        <motion.a
           href="#top"
           data-cursor="Home"
-          className="group flex items-center gap-2.5 rounded-full border border-line bg-background/70 px-3 py-1.5 backdrop-blur"
+          className="group relative overflow-hidden rounded-full border border-line bg-gradient-to-r from-background/95 to-background/80 px-4 py-2 backdrop-blur-sm transition-all duration-300 hover:border-ink/40 hover:shadow-xl hover:shadow-ink/10 hover:scale-105"
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <span className="relative flex h-2 w-2">
-            <span className="pulse-dot absolute inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          {/* Animated background gradient */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-ink/0 via-ink/5 to-ink/0"
+            animate={{
+              x: ["-100%", "100%"],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          {/* Shimmer effect - enhanced */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer-enhanced"
+          />
+
+          {/* Pulse ring on hover */}
+          <motion.div
+            className="absolute inset-0 rounded-full border-2 border-ink/20"
+            initial={{ scale: 1, opacity: 0 }}
+            whileHover={{ scale: 1.1, opacity: [0, 1, 0] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          />
+
+          <span className="relative z-10 flex items-center gap-2 text-[13px] font-semibold text-ink">
+            <motion.svg
+              className="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </motion.svg>
+            <span className="inline-block">Available for New Project</span>
           </span>
-          <span className="text-[13px] font-medium text-ink">
-            Available for New Project
-          </span>
-        </a>
+        </motion.a>
 
         {/* Center — nav (desktop) */}
         <nav className="hidden items-center gap-1 md:flex">
@@ -64,8 +111,9 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right — CTA + mobile menu button */}
+        {/* Right — CTA + theme toggle + mobile menu button */}
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <a
             href="#contact"
             data-cursor="Say hi"
@@ -95,13 +143,16 @@ export function Header() {
           >
             <div className="flex h-16 items-center justify-between px-5">
               <span className="font-display text-lg font-bold">Menu</span>
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-line"
-              >
-                <X className="h-5 w-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
             </div>
             <nav className="mt-6 flex flex-col gap-1 px-5">
               {NAV_ITEMS.map((item, i) => (

@@ -10,7 +10,7 @@ export function Experience() {
       id="experience"
       className="mx-auto mt-24 w-full max-w-[1400px] px-5 md:mt-32 md:px-10"
     >
-      <SectionHeader index="03" title="Experience" meta="9+ years designing" />
+      <SectionHeader index="03" title="Experience" meta="1+ years working" />
 
       <div className="mt-6 divide-y divide-line border-t border-line">
         {EXPERIENCE.map((item, i) => (

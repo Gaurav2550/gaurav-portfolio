@@ -3,18 +3,20 @@
 import { STATS } from "@/lib/portfolio/data";
 
 export function Marquee() {
-  const words = [
-    "Product Design",
-    "UX Research",
-    "Design Systems",
-    "Prototyping",
-    "Motion",
-    "Brand",
-    "Web Apps",
-    "Mobile",
-    "Data Viz",
-    "Accessibility",
-  ];
+  const words =  [
+  "Backend",
+  "Java",
+  "Spring Boot",
+  "Microservices",
+  "System Design",
+  "REST APIs",
+  "Databases",
+  "Cloud",
+  "Docker",
+  "Kafka",
+  "Redis",
+  "AI Engineering",
+];
   const row = [...words, ...words];
 
   return (
