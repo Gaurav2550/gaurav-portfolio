@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "This page is **blank** (or effectively empty).\n\nSpecifically, the image shows a **completely white/empty canvas** with no visible content, text, graphics, or error messages. It appears to be a solid white rectangle with no discernible elements present.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1790731424,
+  "id": "20260930092342562e881faaa94723",
+  "model": "glm-5v-turbo",
+  "object": "chat.completion",
+  "request_id": "20260930092342562e881faaa94723",
+  "usage": {
+    "completion_tokens": 55,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1690,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 1745
+  }
+}

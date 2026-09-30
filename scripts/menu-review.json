@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Yes, the mobile menu drawer is **open** and displaying the navigation items with their associated meta counts. Here is a detailed description of what is visible:\n\n**Header Area:**\n*   **Top Left:** The word \"Menu\" in bold, black text.\n*   **Top Right:** A circular \"X\" close button (outlined circle with an 'x' inside).\n*   **Right Edge:** A vertical scroll bar indicator, suggesting the menu content may extend beyond the visible area.\n\n**Navigation List:**\nThe main content consists of a clean, vertically stacked list of four primary navigation items. Each item features a large, bold label on the left and a smaller numerical or textual count on the right, separated by a thin, light gray horizontal divider line:\n\n1.  **Work** — Aligned to the right is the number **\"40\"**.\n2.  **Service** — Aligned to the right is the number **\"4\"**.\n3.  **Experience** — Aligned to the right is the text **\"9y+\"** (indicating years of experience).\n4.  **Contact** — This item appears at the bottom of this specific list section (no visible count to the right, or it is blank).\n\n**Footer / Call to Action:**\n*   Below the \"Contact\" link and its divider, there is a centered call-to-action button or link that reads **\"Let's Talk\"** followed by a small arrow icon (↗) pointing diagonally up and to the right.\n\n**Bottom Area:**\n*   **Bottom Left:** A circular, solid black avatar or profile icon containing a white letter **\"N\"**.\n*   **Bottom Edge:** A horizontal scroll bar or progress bar is visible at the very bottom of the screen.\n\nThe overall aesthetic is minimalist, using a white background with black text and ample whitespace, typical of modern portfolio designs.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1790731647,
+  "id": "202609300927206578d7ff0dc24f8a",
+  "model": "glm-5v-turbo",
+  "object": "chat.completion",
+  "request_id": "202609300927206578d7ff0dc24f8a",
+  "usage": {
+    "completion_tokens": 390,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 429,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "total_tokens": 819
+  }
+}
