@@ -7,7 +7,7 @@ import { SectionHeader } from "./Work";
 export function Testimonials() {
   return (
     <section className="mx-auto mt-16 w-full max-w-[1400px] px-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:mt-32 lg:px-10">
-      <SectionHeader index="04" title="Kind Words" meta="From teams I shipped with" />
+      <SectionHeader index="04" title="Kind Words" meta="From teams I Worked with" />
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 xl:gap-6">
         {TESTIMONIALS.map((t, i) => (

@@ -36,14 +36,9 @@ export function Hero() {
         ease: "back.out(1.2)",
       })
         .from(
-          "[data-hero='line-2'] .char",
-          { yPercent: 120, rotate: -8, opacity: 0, stagger: 0.035, duration: 1.1, ease: "back.out(1.2)" },
-          "-=0.9"
-        )
-        .from(
           "[data-hero='portrait']",
           { scale: 0.8, yPercent: 10, opacity: 0, duration: 1.2, ease: "expo.out" },
-          "-=1.2"
+          "-=0.9"
         )
         .from(
           "[data-hero='badge']",
@@ -118,186 +113,217 @@ export function Hero() {
 
       {/* Floating decorative shapes */}
       <motion.div
-        className="pointer-events-none absolute left-[10%] top-[15%] h-2 w-2 rounded-full bg-ink/10 dark:bg-paper/10"
+        className="pointer-events-none absolute left-[10%] top-[15%] h-2 w-2 rounded-full bg-paper/10"
+        initial={{ scale: 0, opacity: 0 }}
         animate={{
+          scale: [0, 1, 1],
           y: [0, -20, 0],
-          opacity: [0.3, 0.6, 0.3],
+          opacity: [0, 0.6, 0.3],
         }}
         transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
+          scale: { duration: 1, delay: 0.5 },
+          y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+          opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
         }}
       />
       <motion.div
-        className="pointer-events-none absolute right-[15%] top-[25%] h-3 w-3 rounded-full bg-ink/10 dark:bg-paper/10"
+        className="pointer-events-none absolute right-[15%] top-[25%] h-3 w-3 rounded-full bg-paper/10"
+        initial={{ scale: 0, opacity: 0 }}
         animate={{
+          scale: [0, 1, 1],
           y: [0, 25, 0],
-          opacity: [0.2, 0.5, 0.2],
+          opacity: [0, 0.5, 0.2],
         }}
         transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
+          scale: { duration: 1, delay: 0.7 },
+          y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 },
+          opacity: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 },
         }}
       />
       <motion.div
-        className="pointer-events-none absolute left-[5%] bottom-[20%] h-1.5 w-1.5 rounded-full bg-ink/10 dark:bg-paper/10"
+        className="pointer-events-none absolute left-[5%] bottom-[20%] h-1.5 w-1.5 rounded-full bg-paper/10"
+        initial={{ scale: 0, opacity: 0 }}
         animate={{
+          scale: [0, 1, 1],
           y: [0, -15, 0],
-          opacity: [0.3, 0.7, 0.3],
+          opacity: [0, 0.7, 0.3],
         }}
         transition={{
-          duration: 3.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.5,
+          scale: { duration: 1, delay: 0.9 },
+          y: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+          opacity: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+        }}
+      />
+      <motion.div
+        className="pointer-events-none absolute right-[8%] bottom-[30%] h-2.5 w-2.5 rounded-full bg-paper/10"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{
+          scale: [0, 1, 1],
+          y: [0, 20, 0],
+          opacity: [0, 0.4, 0.2],
+        }}
+        transition={{
+          scale: { duration: 1, delay: 1.1 },
+          y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
+          opacity: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
         }}
       />
 
       {/* Decorative corner accents */}
-      <div className="pointer-events-none absolute left-0 top-0 h-32 w-32 opacity-[0.03] dark:opacity-[0.05]">
+      <motion.div 
+        className="pointer-events-none absolute left-0 top-0 h-32 w-32 opacity-[0.05]"
+        initial={{ opacity: 0, x: -50, y: -50 }}
+        animate={{ opacity: 0.05, x: 0, y: 0 }}
+        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+      >
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0 L100 0 L0 100 Z" fill="currentColor" />
         </svg>
-      </div>
-      <div className="pointer-events-none absolute right-0 bottom-0 h-32 w-32 rotate-180 opacity-[0.03] dark:opacity-[0.05]">
+      </motion.div>
+      <motion.div 
+        className="pointer-events-none absolute right-0 bottom-0 h-32 w-32 rotate-180 opacity-[0.05]"
+        initial={{ opacity: 0, x: 50, y: 50 }}
+        animate={{ opacity: 0.05, x: 0, y: 0 }}
+        transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+      >
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0 L100 0 L0 100 Z" fill="currentColor" />
         </svg>
-      </div>
+      </motion.div>
 
-      <div className="relative">
-        {/* Giant outlined name — line 1 */}
-        <div className="relative">
-          {/* Decorative line accent */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-            className="absolute -left-5 top-[15%] h-[2px] w-16 origin-left bg-ink/20 dark:bg-paper/20 md:-left-10 md:w-24"
-          />
-          
-          <h1
-            data-hero="line-1"
-            aria-label="Gaurav "
-            className="pointer-events-none relative z-10 select-none font-display text-[21vw] font-bold leading-[1.8] tracking-tight sm:text-[19vw] sm:leading-[1.95] md:text-[16vw] md:leading-[2.15] lg:text-[15vw]"
-          >
-            <span className="block overflow-hidden">
-              {line1.map((c, i) => (
-                <span
-                  key={i}
-                  className="char inline-block text-stroke will-change-transform"
-                >
-                  {c}
-                </span>
-              ))}
-            </span>
-          </h1>
-        </div>
-
-        {/* Portrait + second line row */}
-        <div className="relative z-10 -mt-[6vw] flex flex-col items-center justify-center sm:-mt-[8vw] md:-mt-[10vw]">
-          {/* Decorative ring around portrait */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ 
-              scale: 1, 
-              opacity: 1,
-              rotate: [0, 360],
-            }}
-            transition={{
-              scale: { delay: 1.3, duration: 0.8 },
-              opacity: { delay: 1.3, duration: 0.8 },
-              rotate: { duration: 40, repeat: Infinity, ease: "linear" }
-            }}
-            className="pointer-events-none absolute z-0 h-[54vw] w-[76vw] rounded-[28px] border border-dashed border-ink/10 dark:border-paper/10 sm:h-[46vw] sm:w-[62vw] md:h-[40vw] md:w-[36vw] lg:h-[36vw] lg:w-[32vw]"
-          />
-          
-          <div
-            ref={portraitWrap}
-            data-hero="portrait"
-            data-cursor="Hello"
-            className="relative z-20 will-change-transform"
-            style={{ perspective: 1000 }}
-          >
-            {/* Subtle glow effect behind portrait */}
-            <div className="absolute inset-0 -z-10 translate-y-4 scale-95 rounded-[28px] bg-ink/5 blur-2xl dark:bg-paper/5" />
-            
-            <div className="relative h-[50vw] w-[72vw] overflow-hidden rounded-[24px] bg-muted shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] sm:h-[44vw] sm:w-[60vw] sm:rounded-[28px] md:h-[38vw] md:w-[34vw] lg:h-[34vw] lg:w-[30vw]">
-              <img
-                src="/images/Gaurav Thombare.png"
-                alt="portrait of Gaurav Thomabare software engineer"
-                className="h-full w-full object-cover object-[center_20%] grayscale-portrait dark:grayscale-0 dark:filter-none"
-              />
-              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-black/5" />
-              
-              {/* Scan line effect */}
-              <motion.div
-                className="pointer-events-none absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-ink/20 to-transparent dark:via-paper/20"
-                animate={{
-                  top: ['0%', '100%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatDelay: 2,
-                }}
-              />
-            </div>
-
-            {/* Floating label badge */}
+      <motion.div style={{ opacity, scale }} className="relative">
+        {/* Main content container */}
+        <div className="flex flex-col items-center">
+          {/* Portrait section with decorative elements */}
+          <div className="relative mb-8 md:mb-12">
+            {/* Decorative ring around portrait */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.6 }}
-              className="absolute -right-3 top-6 hidden rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm lg:block"
-            >
-              Based in Pune · IST
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.7, duration: 0.6 }}
-              className="absolute -left-4 bottom-8 hidden -rotate-3 rounded-full border border-line bg-background px-3 py-1 text-[11px] font-medium text-ink shadow-sm lg:block"
-            >
-              Open to remote · Worldwide
-            </motion.div>
-          </div>
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ 
+                scale: 1, 
+                opacity: 1,
+                rotate: [0, 360],
+              }}
+              transition={{
+                scale: { delay: 0.8, duration: 0.8 },
+                opacity: { delay: 0.8, duration: 0.8 },
+                rotate: { duration: 40, repeat: Infinity, ease: "linear" }
+              }}
+              className="pointer-events-none absolute -inset-4 rounded-[36px] border border-dashed border-ink/10 dark:border-paper/10 md:-inset-6"
+            />
 
-          {/* Giant solid name — line 2 */}
-          <div className="relative">
-            <h2
-              data-hero="line-2"
-              aria-hidden
-              className="pointer-events-none -mt-[5vw] select-none font-sans text-[20vw] font-bold leading-[1.9] tracking-tight sm:text-[18vw] sm:leading-[2] md:-mt-[4vw] md:text-[16vw] md:leading-[2.12] lg:text-[15vw]"
-            >
-              <span className="block overflow-hidden text-center">
-                {line2.map((c, i) => (
-                  <span
-                    key={i}
-                    className="char inline-block text-ink will-change-transform"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </span>
-            </h2>
-            
-            {/* Decorative line accent */}
+            {/* Floating decorative lines */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
-              className="absolute -right-5 bottom-[25%] h-[2px] w-16 origin-right bg-ink/20 dark:bg-paper/20 md:-right-10 md:w-24"
+              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
+              className="absolute -left-8 top-[20%] h-[2px] w-16 origin-right bg-ink/20 dark:bg-paper/20 md:-left-16 md:w-24"
             />
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 1.1, duration: 0.8, ease: "easeOut" }}
+              className="absolute -right-8 bottom-[20%] h-[2px] w-16 origin-left bg-ink/20 dark:bg-paper/20 md:-right-16 md:w-24"
+            />
+            
+            <div
+              ref={portraitWrap}
+              data-hero="portrait"
+              data-cursor="Hello"
+              className="relative z-20 will-change-transform"
+              style={{ perspective: 1000 }}
+            >
+              {/* Subtle glow effect behind portrait */}
+              <div className="absolute inset-0 -z-10 translate-y-6 scale-95 rounded-[32px] bg-ink/5 blur-3xl dark:bg-paper/5" />
+              
+              <div className="relative h-[75vw] w-[75vw] overflow-hidden rounded-[32px] bg-muted shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] sm:h-[65vw] sm:w-[65vw] md:h-[50vw] md:w-[50vw] lg:h-[40vw] lg:w-[40vw] xl:h-[480px] xl:w-[480px]">
+                <img
+                  src="/images/Gaurav Thombare.png"
+                  alt="portrait of Gaurav Thombare software engineer"
+                  className="h-full w-full object-cover object-[center_20%] transition-all duration-700 hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-t from-paper/10 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 rounded-[32px] ring-1 ring-inset ring-black/10" />
+                
+                {/* Scan line effect */}
+                <motion.div
+                  className="pointer-events-none absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-ink/30 to-transparent dark:via-paper/30"
+                  animate={{
+                    top: ['0%', '100%'],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatDelay: 2,
+                  }}
+                />
+              </div>
+
+              {/* Floating label badges */}
+              <motion.div
+                data-hero="badge"
+                initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.3, duration: 0.6 }}
+                className="absolute -right-3 top-8 hidden rotate-2 rounded-2xl border border-line bg-background/95 px-4 py-2.5 shadow-lg backdrop-blur-sm md:block"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                  </div>
+                  <span className="text-xs font-semibold text-ink">Available for work</span>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                data-hero="badge"
+                initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
+                className="absolute -left-3 bottom-8 hidden -rotate-2 rounded-2xl border border-line bg-background/95 px-4 py-2.5 shadow-lg backdrop-blur-sm md:block"
+              >
+                <span className="text-xs font-semibold text-ink">Based in Pune, India</span>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Name in one line below image */}
+          <div className="relative">
+            <h1
+              data-hero="line-1"
+              className="pointer-events-none relative z-10 select-none text-center font-display text-[15vw] font-bold leading-none tracking-tight sm:text-[12vw] md:text-[10vw] lg:text-[8vw] xl:text-[7rem]"
+            >
+              <span className="block overflow-hidden">
+                <span className="inline-block">
+                  {line1.map((c, i) => (
+                    <span
+                      key={i}
+                      className="char inline-block text-stroke will-change-transform"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </span>
+                {" "}
+                <span className="inline-block font-sans text-ink">
+                  {line2.map((c, i) => (
+                    <span
+                      key={i}
+                      className="char inline-block will-change-transform"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </h1>
           </div>
         </div>
 
         {/* Lower row: title + desc + CTA (left), socials (right) */}
-        <div className="mt-8 flex flex-col gap-8 sm:mt-10 md:mt-12 lg:flex-row lg:items-start lg:justify-between">
+        <div className="mt-10 flex flex-col gap-8 sm:mt-12 md:mt-14 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-md lg:pr-8">
             <p
               data-hero="title"
@@ -323,9 +349,9 @@ export function Hero() {
             </motion.a>
           </div>
 
-          {/* Social links — vertical on desktop, horizontal scroll on mobile */}
+          {/* Social links — vertical on desktop, horizontal on mobile */}
           <div className="grid w-full grid-cols-1 gap-2 min-[440px]:grid-cols-3 lg:w-auto lg:grid-cols-1 lg:gap-2.5">
-            {SOCIAL_LINKS.map((s) => (
+            {SOCIAL_LINKS.map((s, idx) => (
               <motion.a
                 key={s.label}
                 href={s.href}
@@ -343,7 +369,7 @@ export function Hero() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -7,7 +7,7 @@ import { PROJECTS, type Project } from "@/lib/portfolio/data";
 export function Work() {
   return (
     <section id="work" className="mx-auto mt-16 w-full max-w-[1400px] px-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:mt-32 lg:px-10">
-      <SectionHeader index="01" title="Selected Work" meta="4+ projects Build" />
+      <SectionHeader index="01" title="Project Work" meta="4+ projects Build" />
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-6 lg:gap-6">
         {PROJECTS.map((p, i) => (

@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import { useTheme } from "next-themes";
 
 /**
  * Optimized custom cursor with smooth animations
@@ -14,18 +13,11 @@ export function Cursor() {
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);
   const [label, setLabel] = useState<string | null>(null);
-  const { theme } = useTheme();
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
   const sx = useSpring(x, { stiffness: 450, damping: 38, mass: 0.25 });
   const sy = useSpring(y, { stiffness: 450, damping: 38, mass: 0.25 });
-
-  // Theme-aware colors (memoized)
-  const isDark = theme === "dark";
-  const cursorColor = isDark ? "bg-white" : "bg-black";
-  const borderColor = isDark ? "border-white" : "border-black";
-  const textColor = isDark ? "text-black" : "text-white";
 
   const move = useCallback((e: MouseEvent) => {
     x.set(e.clientX);
@@ -79,7 +71,7 @@ export function Cursor() {
     >
       {/* Outer ring */}
       <motion.div
-        className={`absolute rounded-full border-2 ${borderColor}`}
+        className="absolute rounded-full border-2 border-white"
         style={{
           x: "-50%",
           y: "-50%",
@@ -94,7 +86,7 @@ export function Cursor() {
 
       {/* Inner dot */}
       <motion.div
-        className={`absolute flex items-center justify-center rounded-full ${cursorColor} ${textColor}`}
+        className="absolute flex items-center justify-center rounded-full bg-white text-black"
         style={{
           x: "-50%",
           y: "-50%",
@@ -134,7 +126,7 @@ export function Cursor() {
       {/* Simplified pulse effect */}
       {hovering && (
         <motion.div
-          className={`absolute rounded-full border ${borderColor}`}
+          className="absolute rounded-full border border-white"
           style={{
             x: "-50%",
             y: "-50%",

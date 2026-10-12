@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/portfolio/data";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -112,9 +111,8 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right — CTA + theme toggle + mobile menu button */}
+        {/* Right — CTA + mobile menu button */}
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <a
             href="#contact"
             data-cursor="Say hi"
@@ -145,16 +143,13 @@ export function Header() {
           >
             <div className="flex h-14 items-center justify-between px-4 sm:h-16 sm:px-6">
               <span className="font-display text-lg font-bold">Menu</span>
-              <div className="flex items-center gap-2">
-                <ThemeToggle />
-                <button
-                  onClick={() => setOpen(false)}
-                  aria-label="Close menu"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-line"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
             <nav className="mx-auto mt-6 flex w-full max-w-lg flex-col gap-1 px-4 pb-8 sm:px-6">
               {NAV_ITEMS.map((item, i) => (
